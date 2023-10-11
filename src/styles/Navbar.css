@@ -1,0 +1,19 @@
+.search-bar {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-bar form {
+  width: 70%;
+  height: auto;
+}
+
+.botonUser {
+  margin-right: 1rem;
+}
+
+a:hover p {
+  color: rgb(29, 185, 112);
+}

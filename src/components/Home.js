@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import "../styles/Home.css";
 
 function Home() {
   const [movies, setMovies] = useState([]);
@@ -16,7 +17,8 @@ function Home() {
   }, [pag]);
 
   return (
-    <div>
+    <div className="home">
+      <h1 className="titulo">MY MOVIE CRIB</h1>
       <div className="container">
         <div className="columns is-multiline">
           {movies.map((movie, i) => (

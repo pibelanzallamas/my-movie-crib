@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useInput from "../hooks/useInput";
 import { Link } from "react-router-dom";
@@ -6,12 +6,13 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setUser } from "../state/user";
+import "../styles/Navbar.css";
 
 function Navbar() {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const search = useInput();
+  const [search, setSearch] = useState("");
 
   function handleLogout(e) {
     e.preventDefault();
@@ -41,7 +42,8 @@ function Navbar() {
 
   function handleSearch(e) {
     e.preventDefault();
-    navigate(`/movies/${search.value}`);
+    navigate(`/movies/${search}`);
+    setSearch("");
   }
 
   return (
@@ -54,40 +56,47 @@ function Navbar() {
             height="40"
             alt="logo"
           ></img>
-          <p>THE MOVIE DATABASE</p>
+          <p> MY MOVIE CRIB</p>
         </Link>
+      </div>
+      <div className="search-bar">
         <form onSubmit={handleSearch}>
           <input
-            {...search}
+            onChange={(e) => setSearch(e.target.value)}
+            value={search}
             className="input"
             type="text"
             placeholder="Buscar pelicula"
           />
         </form>
       </div>
+
       <div className="navbar-end">
         <div className="navbar-item">
           <div className="buttons">
             {user.name ? (
               <div>
                 <Link to={`/users/${user.id}`}>
-                  <p className="button is-primary">
+                  <p className="button is-primary botonUser">
                     <strong>{user.name}</strong>
                   </p>
                 </Link>
-                <button onClick={handleLogout} className="button is-light">
+                <button
+                  onClick={handleLogout}
+                  className="button is-light botonUser"
+                >
                   Log out
                 </button>
               </div>
             ) : (
-              <div>
+              <div className="navbar-botones">
                 <Link to={"/users/register"}>
-                  <p className="button is-primary">
+                  <p className="button is-primary botonUser">
                     <strong>Register</strong>
                   </p>
                 </Link>
                 <Link to={"/users/login"}>
-                  <p className="button is-light">Log in</p>
+                  <p className="button is-light botonUser">Log in</p>
                 </Link>{" "}
               </div>
             )}
