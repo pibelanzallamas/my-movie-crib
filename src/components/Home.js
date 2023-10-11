@@ -23,7 +23,7 @@ function Home() {
         <div className="columns is-multiline">
           {movies.map((movie, i) => (
             <div key={i} className="column is-one-fifth">
-              <Link to={`/movies/search/${movie.id}`}>
+              <Link to={`/movies/search/${movie.id}`} target="_blank">
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                   alt={movie.title}
@@ -40,6 +40,8 @@ function Home() {
             window.scrollTo(0, 0);
             setPag(pag - 1);
           }}
+          className="button is-info"
+          style={{ marginTop: "0.5rem", marginRight: "0.5rem" }}
         >
           Previous
         </button>
@@ -51,6 +53,8 @@ function Home() {
           window.scrollTo(0, 0);
           setPag(pag + 1);
         }}
+        className="button is-primary"
+        style={{ marginTop: "0.5rem" }}
       >
         Next
       </button>

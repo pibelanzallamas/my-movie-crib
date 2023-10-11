@@ -36,7 +36,7 @@ function Pelicula() {
   if (!movie.id) return <h3>No hay datos</h3>;
 
   return (
-    <div className="container">
+    <div className="container" style={{ marginTop: "1rem" }}>
       <div className="columns">
         <div className="column is-one-quarter">
           <img
@@ -67,11 +67,19 @@ function Pelicula() {
               onClick={() => {
                 handleLike(movie.id);
               }}
+              className="button is-primary"
             >
               Like!
             </button>
           ) : (
-            <></>
+            <button
+              onClick={() => {
+                handleLike(movie.id);
+              }}
+              className="button is-info"
+            >
+              Disike!
+            </button>
           )}
         </div>
       </div>

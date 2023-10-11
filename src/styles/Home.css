@@ -1,7 +1,9 @@
 .titulo {
   font-size: 3rem;
-  /* border: solid 1px red; */
   color: rgb(20, 184, 129);
   font-weight: 400;
+  margin-bottom: 1rem;
+}
+.home {
   margin-bottom: 1rem;
 }
