@@ -1,14 +1,12 @@
 const express = require("express");
 const app = express();
-const cookieParser = require("cookie-parser");
 const db = require("./db");
-const models = require("./models");
+const cookieParser = require("cookie-parser");
 const routes = require("./routes");
+const models = require("./models");
 
 app.use(cookieParser());
-
 app.use(express.json());
-
 app.use("/api", routes);
 
 app.use("/api", (req, res) => {
