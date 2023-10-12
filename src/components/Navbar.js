@@ -50,13 +50,13 @@ function Navbar() {
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <Link className="navbar-item" to={"/"}>
-          <img
-            src="https://imagizer.imageshack.com/img924/3506/mAccSe.png"
-            width="30"
-            height="40"
-            alt="logo"
-          ></img>
-          <p> MY MOVIE CRIB</p>
+          <div className="logo">
+            <img
+              src="https://imagizer.imageshack.com/img924/3506/mAccSe.png"
+              alt="logo"
+            ></img>
+          </div>
+          <p>My MoViE cRiB</p>
         </Link>
       </div>
       <div className="search-bar">
