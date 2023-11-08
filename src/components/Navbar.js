@@ -25,11 +25,11 @@ function Navbar() {
       .post("/api/users/logout")
       .then(() => {
         dispatch(setUser(initialState));
-        navigate("/");
+        navigate("/1");
       })
       .catch((err) => {
         console.log("error: ", err);
-        navigate("/");
+        navigate("/1");
       });
   }
 
@@ -49,7 +49,7 @@ function Navbar() {
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
-        <Link className="navbar-item" to={"/"}>
+        <Link className="navbar-item" to={"/1"}>
           <div className="logo">
             <img
               src="https://imagizer.imageshack.com/img924/3506/mAccSe.png"

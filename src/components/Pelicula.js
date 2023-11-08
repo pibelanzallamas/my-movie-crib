@@ -9,6 +9,7 @@ function Pelicula() {
   const [like, setLike] = useState(false);
   const [movie, setMovie] = useState([]);
 
+  //buscar detalles de pelicula
   useEffect(() => {
     axios
       .get(`/api/movies/search/${id}`)
@@ -19,6 +20,7 @@ function Pelicula() {
       .catch(() => {});
   }, [id]);
 
+  //buscar si esta likeada
   useEffect(() => {
     axios
       .get("/api/favorites/find", { params: { mid: movie.id, uid } })
@@ -31,29 +33,34 @@ function Pelicula() {
 
   function handleLike(mid) {
     axios
-      .post("/api/favorites/register", { mid, uid })
-      .then((fav) => {
-        if (fav.data[1]) {
+      .post("/api/favorites/register", { data: { mid, uid } })
+      .then((add) => {
+        if (!uid) alert("Ojo!", "Necesitas estar logueado 💻", "warning");
+        else if (add.data) {
           alert("likeado!");
           setLike(true);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
+        } else alert("La propiedad ya esta en favoritos. 🤧");
       });
   }
 
+  //dislikea
   function handleDislike(mid) {
     axios
-      .post("/api/favorites/delete", { mid, uid })
-      .then((fav) => {
-        if (fav.data[1]) {
+      .delete("/api/favorites/delete", { data: { mid, uid } })
+      .then((del) => {
+        if (del.data === "OK") {
           alert("dislikeado!");
           setLike(false);
         }
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((del) => {
+        if (del.code === "ERR_BAD_REQUEST") {
+          return alert(
+            "Guarda campeon!",
+            "La propiedad no esta en favoritos. 😡",
+            "danger"
+          );
+        }
       });
   }
 

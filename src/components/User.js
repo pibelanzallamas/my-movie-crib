@@ -7,8 +7,6 @@ function User() {
   const { id } = useParams();
   const [favorites, setFavorites] = useState([]);
   const [movies, setMovies] = useState([]);
-  const [like, setLike] = useState(false);
-  const uid = id;
 
   useEffect(() => {
     axios
@@ -41,16 +39,13 @@ function User() {
     }
   }, [favorites]);
 
-  useEffect(() => {
-    axios
-      .get("/api/favorites/find", { params: { uid } })
-      .then((fav) => {
-        if (fav.data) setLike(true);
-        else setLike(false);
-      })
-      .catch(() => {});
-  }, []);
-
+  if (movies.length < 1)
+    return (
+      <>
+        <h3 className="sub-titulo">Este usuario no tiene favoritos.</h3>
+        <h3 style={{ fontSize: "1.7rem" }}>😵</h3>
+      </>
+    );
   return (
     <div>
       <h3 className="titulo">Favoritos</h3>

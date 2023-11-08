@@ -22,7 +22,7 @@ function Register() {
       .then((user) => {
         if (user.data[1]) {
           alert("El usuario ha sido creado!");
-          navigate("/");
+          navigate("/users/login");
         } else if (user.data[1] === false) {
           alert("El usuario ya existe!");
         } else {

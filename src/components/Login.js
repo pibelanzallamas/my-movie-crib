@@ -21,7 +21,7 @@ function Login() {
       .then((payload) => {
         dispatch(setUser(payload.data));
         alert(`Bienvenido ${payload.data.name}!`);
-        navigate("/");
+        navigate("/1");
       })
       .catch(() => alert("Datos incorrectos!"));
   }
