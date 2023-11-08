@@ -4,9 +4,10 @@ import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 
 function Pelicula() {
-  const [movie, setMovie] = useState([]);
   const { id } = useParams();
   const uid = useSelector((state) => state.user.id);
+  const [like, setLike] = useState(false);
+  const [movie, setMovie] = useState([]);
 
   useEffect(() => {
     axios
@@ -18,14 +19,37 @@ function Pelicula() {
       .catch(() => {});
   }, [id]);
 
+  useEffect(() => {
+    axios
+      .get("/api/favorites/find", { params: { mid: movie.id, uid } })
+      .then((fav) => {
+        if (fav.data.movieId) setLike(true);
+        else setLike(false);
+      })
+      .catch((err) => console.log(err));
+  }, [uid, movie]);
+
   function handleLike(mid) {
     axios
       .post("/api/favorites/register", { mid, uid })
       .then((fav) => {
         if (fav.data[1]) {
           alert("likeado!");
-        } else {
-          alert("ya en likes!");
+          setLike(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function handleDislike(mid) {
+    axios
+      .post("/api/favorites/delete", { mid, uid })
+      .then((fav) => {
+        if (fav.data[1]) {
+          alert("dislikeado!");
+          setLike(false);
         }
       })
       .catch((err) => {
@@ -61,25 +85,28 @@ function Pelicula() {
           ) : (
             <></>
           )}
-
           {uid ? (
-            <button
-              onClick={() => {
-                handleLike(movie.id);
-              }}
-              className="button is-primary"
-            >
-              Like!
-            </button>
+            like ? (
+              <button
+                onClick={() => {
+                  handleDislike(movie.id);
+                }}
+                className="button is-info"
+              >
+                Disike!
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  handleLike(movie.id);
+                }}
+                className="button is-primary"
+              >
+                Like!
+              </button>
+            )
           ) : (
-            <button
-              onClick={() => {
-                handleLike(movie.id);
-              }}
-              className="button is-info"
-            >
-              Disike!
-            </button>
+            <></>
           )}
         </div>
       </div>

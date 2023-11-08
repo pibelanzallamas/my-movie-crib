@@ -56,7 +56,7 @@ function Navbar() {
               alt="logo"
             ></img>
           </div>
-          <p>My MoViE cRiB</p>
+          <p>My movie crib </p>
         </Link>
       </div>
       <div className="search-bar">
@@ -70,7 +70,6 @@ function Navbar() {
           />
         </form>
       </div>
-
       <div className="navbar-end">
         <div className="navbar-item">
           <div className="buttons">

@@ -15,6 +15,14 @@ favorites.post("/register", (req, res) => {
     .catch((err) => res.send(err));
 });
 
+favorites.get("/find", (req, res) => {
+  const { uid, mid } = req.query;
+
+  Favorites.findOne({ where: { movieId: mid, userId: uid } })
+    .then((fav) => res.send(fav))
+    .catch((err) => res.send(err));
+});
+
 favorites.get("/:id", (req, res) => {
   const { id } = req.params;
 

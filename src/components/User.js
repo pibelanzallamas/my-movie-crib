@@ -53,7 +53,7 @@ function User() {
 
   return (
     <div>
-      <h3>Favoritos</h3>
+      <h3 className="titulo">Favoritos</h3>
       <div className="container">
         <div className="columns is-multiline">
           {movies.map((movie) => (
