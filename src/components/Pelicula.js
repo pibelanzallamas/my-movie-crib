@@ -78,7 +78,9 @@ function Pelicula() {
         <div className="column">
           <p className="title is-4">{movie.title}</p>
           <p className="content">{movie.overview}</p>
-          <p className="subtitle is-6">Genre: {movie.genres[0].name}</p>
+          <p className="subtitle is-6">
+            Genre: {movie.genres[0]?.name || "unspecified"}
+          </p>
           <p className="subtitle is-6">Duration: {movie.runtime}min</p>
           <p className="subtitle is-6">Release Data: {movie.release_date}</p>
 

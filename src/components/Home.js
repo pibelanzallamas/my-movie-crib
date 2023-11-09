@@ -18,7 +18,7 @@ function Home() {
 
   return (
     <div className="home">
-      <h1 className="titulo">My movie crib 🎬</h1>
+      <h1 className="titulo">My Movie Crib 🎬</h1>
       <div className="container">
         <div className="columns is-multiline">
           {movies.map((movie, i) => (

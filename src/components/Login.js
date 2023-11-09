@@ -4,6 +4,7 @@ import useInput from "../hooks/useInput";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { setUser } from "../state/user";
+import "../styles/Login.css";
 
 function Login() {
   const email = useInput();
@@ -29,10 +30,22 @@ function Login() {
   return (
     <div>
       <form onSubmit={handleLogIn}>
-        <h3>Ingresar</h3>
-        <input type="email" {...email} placeholder="Email" />
-        <input type="password" {...password} placeholder="Password" />
-        <button>Enviar</button>
+        <h3 className="titulo">Ingresar</h3>
+        <div className="form">
+          <input
+            {...email}
+            className="input-form"
+            type="email"
+            placeholder="Email"
+          />
+          <input
+            {...password}
+            className="input-form"
+            type="password"
+            placeholder="Password"
+          />
+          <button className="button is-primary">Enviar</button>
+        </div>
       </form>
     </div>
   );

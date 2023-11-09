@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import useInput from "../hooks/useInput";
 import { useNavigate } from "react-router";
+import "../styles/Login.css";
 
 function Register() {
   const email = useInput();
@@ -34,12 +35,24 @@ function Register() {
   return (
     <div>
       <form onSubmit={handleRegister}>
-        <h3>Registrarse</h3>
-        <input {...email} type="email" placeholder="Email" />
-        <input {...password} type="password" placeholder="Password" />
-        <input {...name} placeholder="Nombre" />
-        <input {...lastname} placeholder="Apellido" />
-        <button>Enviar</button>
+        <h3 className="titulo">Registrarse</h3>
+        <div className="form">
+          <input {...name} className="input-form" placeholder="Nombre" />
+          <input {...lastname} className="input-form" placeholder="Apellido" />
+          <input
+            {...email}
+            className="input-form"
+            type="email"
+            placeholder="Email"
+          />
+          <input
+            {...password}
+            className="input-form"
+            type="password"
+            placeholder="Password"
+          />
+          <button className="button is-primary">Enviar</button>
+        </div>
       </form>
     </div>
   );

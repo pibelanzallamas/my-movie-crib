@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import useInput from "../hooks/useInput";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -56,7 +55,7 @@ function Navbar() {
               alt="logo"
             ></img>
           </div>
-          <p>My movie crib </p>
+          <p>My Movie Crib </p>
         </Link>
       </div>
       <div className="search-bar">
